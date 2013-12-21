@@ -9,7 +9,6 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-#Sportycus::Application.config.secret_key_base = 'ac8b79799866d0ff2d434305702786a96f81b48ed89e93f9eb45583fae3d48d76e705e7e7679a50222965426a6f1a0dbea36e9afff86739dcff9a2ef4802b797'
 
 require 'securerandom'
 
