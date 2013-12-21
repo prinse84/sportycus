@@ -1,3 +1,3 @@
 # Sportycus
 
-Playing around with Rails
+Playing around with Rails with a simple app to track stats. 
