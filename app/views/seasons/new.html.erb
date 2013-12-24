@@ -1,2 +1,19 @@
-<h1>Seasons#new</h1>
-<p>Find me in app/views/seasons/new.html.erb</p>
+<% provide(:title, 'Add a Season') %>
+
+<h1>Add a season</h1>
+
+<div class="row">
+  <div class="span6 offset3">
+    <%= form_for(@season) do |f| %>
+		<%= render 'shared/error_messages' %>
+      	
+		<%= f.label :title %>
+      	<%= f.text_field :title %>
+
+      	<%= f.label :description %>
+      	<%= f.text_field :description %>
+
+      	<%= f.submit "Add Season", class: "btn btn-large btn-primary" %>
+    <% end %>
+  </div>
+</div>
