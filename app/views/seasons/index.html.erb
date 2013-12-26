@@ -1,0 +1,14 @@
+<% provide(:title, 'All seasons') %>
+<h1>All seasons</h1>
+
+<%= will_paginate %>
+
+<ul class="seasons">
+  <% @seasons.each do |season| %>
+    <li>
+      <%= link_to season.title, season %> |	<%= link_to "delete", season, method: :delete,data: { confirm: "You sure?" } %>	                               
+    </li>
+  <% end %>
+</ul>
+
+<%= will_paginate %>

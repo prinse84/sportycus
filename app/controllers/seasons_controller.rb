@@ -1,5 +1,9 @@
 class SeasonsController < ApplicationController
   
+  def index
+    @seasons = Season.paginate(page: params[:page])
+  end
+    
   def show
     @season = Season.find(params[:id])
   end 
@@ -9,7 +13,7 @@ class SeasonsController < ApplicationController
   end
   
   def create
-    @season = Season.new(user_params)
+    @season = Season.new(season_params)
     #@season = Season.new(params[:season])    # Not the final implementation!
     if @season.save
       flash[:success] = "Season successfully added"  
@@ -19,8 +23,28 @@ class SeasonsController < ApplicationController
     end
   end
   
+  def edit
+    @season = Season.find(params[:id])
+  end
+  
+  def update
+    @season = Season.find(params[:id])
+    if @season.update_attributes(season_params)
+      flash[:success] = "Season updated"
+      redirect_to @season
+    else
+      render 'edit'
+    end
+  end
+  
+  def destroy
+    Season.find(params[:id]).destroy
+    flash[:success] = "Season deleted."
+    redirect_to seasons_url
+    end
+  
   private
-    def user_params
+    def season_params
       params.require(:season).permit(:title, :description)
     end
 end

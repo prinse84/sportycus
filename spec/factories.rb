@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :season do
-    title "Fall 2005"
-    description "Fall 2005 Season"
+    sequence(:title)  { |n| "Fall #{n}" }
+    sequence(:description) { |n| "The #{title} season"}
   end
 end
