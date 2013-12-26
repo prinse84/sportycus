@@ -7,12 +7,14 @@ describe "Season pages" do
     before { visit seasons_path }
     it { should have_title('All seasons') }
     it { should have_content('All seasons') }
+    it { should have_link('Add season', href: new_season_path) }
 
     it "should list each season" do
       Season.all.each do |season|
         expect(page).to have_selector('li', text: season.title)
       end
     end
+    
     
     describe "pagination" do
       before(:all) { 31.times { FactoryGirl.create(:season) } }
