@@ -1,5 +1,29 @@
 <% provide(:title, @season.title) %>
 
-<p><%= @season.title %><br /> 
-<%= @season.description %></p>
+<p><%= @season.title %> <br />
 <%= link_to "Update season details", edit_season_path(@season) %>
+</p>
+
+<div class="span8">
+	<% if @season.games.any? %>
+  		<h3>Games (<%= @season.games.count %>)</h3>
+    	<ol class="games">
+		<table class="table table-condensed table-striped">
+			<thead>
+			    <tr>
+			      	<th>Date</th>
+			      	<th>Time</th>
+			      	<th>Opponent</th>	
+			  		<th>Result</th>
+			 	</tr>
+			 </thead>
+			<tbody>
+    			<%= render @games %>
+			</tbody>
+		</table>
+     	</ol>
+     	<%= will_paginate @games %>
+    <% end %>
+</div>
+
+<p><%= link_to "Add a game", new_season_game_path(@season), class: "btn btn-small btn-primary" %>

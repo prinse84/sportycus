@@ -1,0 +1,29 @@
+<% provide(:title, 'Add a game for ' + @season.title) %>
+
+
+<h1>Add a game for <%= @season.title %></h1>
+
+<div class="row">
+  <div class="span6 offset3">
+    <%= form_for [:season, @game] do |f| %>
+		<%= render 'shared/error_messages' %>
+      	
+		<%= f.label :opponent %>
+      	<%= f.text_field :opponent %>
+
+      	<%= f.label :game_date %>
+      	<%= f.text_field :game_date %>
+
+      	<%= f.label :game_time %>
+      	<%= f.text_field :game_time %>
+
+      	<%= f.label :gamesite, 'Game Site' %>
+		<%= f.collection_select :gamesite, Gamesite.all, :id, :name, prompt: true %>
+		
+      	<%= f.label :gameresult, 'Game Result'%>
+		<%= f.collection_select :gameresult, Gameresult.all, :id, :name, prompt: true %>
+
+      	<%= f.submit "Add Game", class: "btn btn-large btn-primary" %>
+    <% end %>
+  </div>
+</div>

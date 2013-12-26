@@ -6,6 +6,7 @@ class SeasonsController < ApplicationController
     
   def show
     @season = Season.find(params[:id])
+    @games = @season.games.paginate(page: params[:page])
   end 
   
   def new
@@ -14,7 +15,6 @@ class SeasonsController < ApplicationController
   
   def create
     @season = Season.new(season_params)
-    #@season = Season.new(params[:season])    # Not the final implementation!
     if @season.save
       flash[:success] = "Season successfully added"  
       redirect_to @season

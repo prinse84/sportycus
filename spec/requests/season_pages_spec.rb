@@ -43,11 +43,42 @@ describe "Season pages" do
   
   describe "season profile page" do
     let(:season) { FactoryGirl.create(:season) }
+    let!(:g1) { FactoryGirl.create(:game, season: season, opponent: "Bunt Pirates", game_date: 1.day.ago) }
+    let!(:g2) { FactoryGirl.create(:game, season: season, opponent: "Blue Waffles") }
+    
     before { visit season_path(season) }
 
     it { should have_content(season.title) }
     it { should have_title(season.title) }
     it { should have_link('Update season details',  href: edit_season_path(season)) }
+    it { should have_link('Add a game',  href: new_season_game_path(season)) }
+    
+    describe "games" do
+      it { should have_content(g1.opponent) }
+      it { should have_content(g2.opponent) }
+      it { should have_content(season.games.count) }
+    end
+    
+    describe "when team is playing at home" do
+      let(:gamesite) {Gamesite.find_by_name("Home")}
+      let!(:g3) { FactoryGirl.create(:game, season: season, gamesite: gamesite) }
+      before { visit season_path(season) }
+      it { should have_content "vs" }
+    end
+    
+    describe "when team is playing away" do
+      let(:gamesite) { FactoryGirl.create(:gamesite, name: 'Away') }  
+      let!(:g3) { FactoryGirl.create(:game, season: season, gamesite: gamesite) }
+      before { visit season_path(season) }
+      it { should have_content "@" }
+    end
+    
+    describe "when team is playing at a neutal location" do
+      let(:gamesite) { FactoryGirl.create(:gamesite, name: 'Neutral') }  
+      let!(:g3) { FactoryGirl.create(:game, season: season, gamesite: gamesite) }
+      before { visit season_path(season) }
+      it { should have_content "vs" }
+    end
   end
   
   describe "add season page" do

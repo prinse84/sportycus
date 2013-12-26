@@ -1,0 +1,10 @@
+<tr>
+	<td><%= game.game_date %> </td>
+	<td><%= game.game_time %> </td>	
+    <% if game.gamesite.name == 'Away'%>	
+		<td> @ <%= game.opponent %></td>
+	<% else %>
+		<td> vs. <%= game.opponent %></td>
+	<% end %>
+    <td><%= game.gameresult.abbreviation %></td>
+</tr>
