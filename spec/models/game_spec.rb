@@ -53,4 +53,5 @@ describe Game do
     before { @game.game_date = " " }
     it { should_not be_valid }
   end
+  
 end

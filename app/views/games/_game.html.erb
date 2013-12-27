@@ -1,10 +1,12 @@
-<tr>
-	<td><%= game.game_date %> </td>
-	<td><%= game.game_time %> </td>	
-    <% if game.gamesite.name == 'Away'%>	
-		<td> @ <%= game.opponent %></td>
-	<% else %>
-		<td> vs. <%= game.opponent %></td>
-	<% end %>
-    <td><%= game.gameresult.abbreviation %></td>
-</tr>
+
+	<tr>
+		<td><%#= game.game_date.strftime('%b %e %Y')  %> <%= game.game_date %> </td>
+		<td><%#= game.game_time.strftime('%l:%M %p') %> <%= game.game_time %> </td>	
+    	<% if game.gamesite.name == 'Away'%>	
+			<td> @ <%= game.opponent %></td>
+		<% else %>
+			<td> vs. <%= game.opponent %></td>
+		<% end %>
+    	<td><%= game.gameresult.abbreviation %></td>
+    	<td><%= link_to 'Box score', season_game_path(game.season,game) %></td>
+	</tr>

@@ -1,0 +1,15 @@
+<% provide(:title, 'Game details') %>
+
+<h3>
+<% if @game.gamesite.name == 'Away'%>	
+	<td> @ <%= @game.opponent %></td>
+<% else %>
+	<td> vs. <%= @game.opponent %></td>
+<% end %>
+(<%= @game.gameresult.abbreviation %>)
+</h3>
+
+<%= @game.game_date %> <%= @game.game_time %>
+<%#= @game.game_date.strftime('%A, %B %e %Y') + " | " + @game.game_time.strftime('%l:%M %p') %>
+
+<%= link_to 'Edit', edit_season_game_path(@season, @game)%>

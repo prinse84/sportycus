@@ -1,11 +1,11 @@
-<% provide(:title, 'Add a Season') %>
+<% provide(:title, 'Add season') %>
 
-<h1>Add a season</h1>
+<h1>Add season</h1>
 
 <div class="row">
   <div class="span6 offset3">
     <%= form_for(@season) do |f| %>
-		<%= render 'shared/error_messages' %>
+		<%= render 'error_messages' %>
       	
 		<%= f.label :title %>
       	<%= f.text_field :title %>

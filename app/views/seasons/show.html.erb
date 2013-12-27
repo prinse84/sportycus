@@ -1,12 +1,12 @@
 <% provide(:title, @season.title) %>
 
-<p><%= @season.title %> <br />
+<h3><%= @season.title %> (<%= @season.total_wins%> - <%= @season.total_losses %>)</h3>
 <%= link_to "Update season details", edit_season_path(@season) %>
 </p>
 
 <div class="span8">
 	<% if @season.games.any? %>
-  		<h3>Games (<%= @season.games.count %>)</h3>
+  		<h2>Games (<%= @season.games.count %>)</h2>
     	<ol class="games">
 		<table class="table table-condensed table-striped">
 			<thead>
@@ -15,6 +15,7 @@
 			      	<th>Time</th>
 			      	<th>Opponent</th>	
 			  		<th>Result</th>
+			  		<th></th>			
 			 	</tr>
 			 </thead>
 			<tbody>
@@ -24,6 +25,8 @@
      	</ol>
      	<%= will_paginate @games %>
     <% end %>
+	<%= link_to "Add a game", new_season_game_path(@season), class: "btn btn-small btn-primary" %>
+	<%= link_to "Delete season", @season, method: :delete,data: { confirm: "You sure?" }, class: "btn btn-small btn-danger" %>
+
 </div>
 
-<p><%= link_to "Add a game", new_season_game_path(@season), class: "btn btn-small btn-primary" %>

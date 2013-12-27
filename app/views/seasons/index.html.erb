@@ -1,15 +1,22 @@
 <% provide(:title, 'All seasons') %>
 <h1>All seasons</h1>
 
-<%= will_paginate %>
-
-<ul class="seasons">
-  <% @seasons.each do |season| %>
-    <li>
-      <%= link_to season.title, season %> |	<%= link_to "delete", season, method: :delete,data: { confirm: "You sure?" } %>	                               
-    </li>
-  <% end %>
-</ul>
+<div class="span8">
+	<ol class="games">
+		<table class="table table-condensed table-striped">
+			<thead>
+			    <tr>
+			      	<th>Season</th>
+			      	<th>Record</th>
+			  		<th></th>			
+			 	</tr>
+			 </thead>
+			<tbody>
+				<%= render @seasons %>
+			</tbody>
+		</table>
+	</ol>
+</div>
 
 <%= will_paginate %>
 
