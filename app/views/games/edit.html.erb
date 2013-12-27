@@ -4,25 +4,6 @@
 
 <div class="row">
   <div class="span6 offset3">
-    <%= form_for [@season, @game] do |f| %>
-		<%= render 'error_messages' %>
-      	
-		<%= f.label :opponent %>
-      	<%= f.text_field :opponent %>
-
-      	<%= f.label :game_date, 'Game Date' %>
-      	<%= f.text_field :game_date %>
-
-      	<%= f.label :game_time, 'Game Time' %>
-      	<%= f.text_field :game_time %>
-
-      	<%= f.label :gamesite_id, 'Game Site' %>
-		<%= f.collection_select :gamesite_id, Gamesite.all, :id, :name, prompt: true %>
-		
-      	<%= f.label :gameresult_id, 'Game Result'%>
-		<%= f.collection_select :gameresult_id, Gameresult.all, :id, :name, prompt: true %>
-
-      	<%= f.submit "Save game", class: "btn btn-large btn-primary" %>
-    <% end %>
+	<%= render 'form'%>
   </div>
 </div>

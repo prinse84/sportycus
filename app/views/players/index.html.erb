@@ -1,19 +1,18 @@
-<% provide(:title, 'All seasons') %>
-<h1>All seasons</h1>
+<% provide(:title, 'All players') %>
+<h1>All players</h1>
 
 <div class="span8">
 	<ol class="games">
 		<table class="table table-condensed table-striped">
 			<thead>
 			    <tr>
-			      	<th>Season</th>
-					<th>G</th>
-			      	<th>Record</th>
+			      	<th>Name</th>
+			      	<th>Position</th>
 			  		<th></th>			
 			 	</tr>
 			 </thead>
 			<tbody>
-				<%= render @seasons %>
+				<%= render @players %>
 			</tbody>
 		</table>
 	</ol>
@@ -21,4 +20,4 @@
 
 <%= will_paginate %>
 
-<%= link_to "Add season", new_season_path, class: "btn btn-small btn-primary" %>
+<%= link_to "Add player", new_player_path, class: "btn btn-small btn-primary" %>

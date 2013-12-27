@@ -41,7 +41,7 @@ class SeasonsController < ApplicationController
     Season.find(params[:id]).destroy
     flash[:success] = "Season deleted."
     redirect_to seasons_url
-    end
+  end
   
   private
     def season_params

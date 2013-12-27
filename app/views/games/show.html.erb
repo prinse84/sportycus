@@ -2,9 +2,9 @@
 
 <h3>
 <% if @game.gamesite.name == 'Away'%>	
-	<td> @ <%= @game.opponent %></td>
+	 @ <%= @game.opponent %>
 <% else %>
-	<td> vs. <%= @game.opponent %></td>
+    vs. <%= @game.opponent %>
 <% end %>
 (<%= @game.gameresult.abbreviation %>)
 </h3>
@@ -12,4 +12,5 @@
 <%= @game.game_date %> <%= @game.game_time %>
 <%#= @game.game_date.strftime('%A, %B %e %Y') + " | " + @game.game_time.strftime('%l:%M %p') %>
 
-<%= link_to 'Edit', edit_season_game_path(@season, @game)%>
+<p><%= link_to 'Edit', edit_season_game_path(@season, @game), class: "btn btn-small btn-warning" %>
+<%= link_to "Delete", season_game_path, method: :delete,data: { confirm: "You sure?" }, class: "btn btn-small btn-danger" %></p>

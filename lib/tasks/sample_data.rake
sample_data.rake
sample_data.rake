@@ -1,9 +1,6 @@
 namespace :db do
   desc "Fill database with sample data"
   task populate: :environment do
-    Season.create!(title: "Fall 2005",
-                  description: "The Fall 2005 Season"
-                 )
     20.times do |n|
       #title  = Faker::Name.name
       title = "Fall 20#{n+1}"
@@ -23,9 +20,22 @@ namespace :db do
                       gameresult_id: 1,
                       gamesite_id: 1,
                       game_date: gamedate,
-                      game_time: Time.now
+                      game_time: Time.now,
+                      team_runs: 11,
+                      opponent_team_runs: 6
                       )
           end
       end
+  
+    20.times do |n|
+        name = Faker::Name.name
+        moniker = Faker::Name.last_name
+        position = (1..6).to_a.sample
+        Player.create!(name: name, 
+                      moniker: moniker,
+                      position_id: position
+                      )
+    end
+        
   end
 end

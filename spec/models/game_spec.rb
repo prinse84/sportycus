@@ -5,7 +5,7 @@ describe Game do
   let(:season) { FactoryGirl.create(:season) }
   let(:gameresult) { FactoryGirl.create(:gameresult) }  
   let(:gamesite) { FactoryGirl.create(:gamesite) }    
-  before { @game = season.games.build(opponent: "Bunt Pirates", game_date: 1.day.ago, game_time: 1.day.ago, gameresult_id: gameresult.id, gamesite_id: gamesite.id ) }
+  before { @game = season.games.build(opponent: "Bunt Pirates", game_date: 1.day.ago, game_time: 1.day.ago, gameresult_id: gameresult.id, gamesite_id: gamesite.id, team_runs: 11, opponent_team_runs: 5 ) }
   subject { @game }
   it { should respond_to(:opponent) }
   it { should respond_to(:season_id) }

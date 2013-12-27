@@ -15,7 +15,6 @@ describe "Season pages" do
       end
     end
     
-    
     describe "pagination" do
       before(:all) { 31.times { FactoryGirl.create(:season) } }
       after(:all)  { Season.delete_all }

@@ -1,5 +1,5 @@
 Sportycus::Application.routes.draw do
-  get "games/new"
+  resources :players
   resources :seasons do
     resources :games  
   end

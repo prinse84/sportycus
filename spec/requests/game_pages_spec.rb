@@ -9,7 +9,7 @@ describe "GamePages" do
 
   describe "add game page" do
     before { visit new_season_game_path(season) }
-    let(:submit) { "Add Game" }
+    let(:submit) { "Save game" }
         
     describe "page" do
       it { should have_content('Add a game') }
@@ -22,9 +22,19 @@ describe "GamePages" do
       end    
     end
     
-    describe "with invalid information - blank form" do 
-      before { click_button submit }
-      it { should have_content('error') }
+    describe "with invalid information - bad data" do 
+      before do
+        fill_in "Opponent",  with: "Bunters"
+        fill_in "Game Date",  with: "BBC"
+        fill_in "Game Time",  with: "WHa"
+        select "Home", :from => "Game Site", match: :first
+        select "Win", :from => "Game Result", match: :first
+        fill_in "Team Runs",  with: "ABC"
+        fill_in "Opponent Team Runs",  with: "ABC"                
+      end  
+      it "should not create a game" do
+        expect { click_button submit }.not_to change(Game, :count)
+      end
     end
     
     describe "with valid information" do
@@ -34,6 +44,8 @@ describe "GamePages" do
         fill_in "Game Time",  with: "09:00:00"
         select "Home", :from => "Game Site", match: :first
         select "Win", :from => "Game Result", match: :first  
+        fill_in "Team Runs",  with: "11"
+        fill_in "Opponent Team Runs",  with: "6"        
       end
       it "should create a game" do
         expect { click_button submit }.to change(Game, :count).by(1)
@@ -77,6 +89,7 @@ describe "GamePages" do
     end
      
     describe "with valid information" do
+      
       let(:new_opponent)  { "Cheetahs" }
       before do
         fill_in "Opponent",  with: new_opponent
@@ -94,3 +107,4 @@ describe "GamePages" do
   end
   
 end
+  

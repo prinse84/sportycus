@@ -7,6 +7,6 @@
 		<% else %>
 			<td> vs. <%= game.opponent %></td>
 		<% end %>
-    	<td><%= game.gameresult.abbreviation %></td>
+    	<td><%= game.gameresult.abbreviation %> (<%= game.team_runs %> - <%= game.opponent_team_runs %>)</td>
     	<td><%= link_to 'Box score', season_game_path(game.season,game) %></td>
 	</tr>

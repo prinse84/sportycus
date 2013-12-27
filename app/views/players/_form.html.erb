@@ -1,0 +1,14 @@
+<%= form_for (@player) do |f| %>
+	<%= render 'error_messages' %>
+  	
+	<%= f.label :name %>
+  	<%= f.text_field :name %>
+
+  	<%= f.label :moniker, 'Nickname' %>
+  	<%= f.text_field :moniker %>
+
+  	<%= f.label :position_id, 'Position' %>
+	<%= f.collection_select :position_id, Position.all, :id, :name, prompt: true %>
+	
+  	<%= f.submit "Save player", class: "btn btn-large btn-primary" %>
+<% end %>
