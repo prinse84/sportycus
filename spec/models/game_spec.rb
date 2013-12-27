@@ -13,6 +13,8 @@ describe Game do
   it { should respond_to(:game_time) }
   it { should respond_to(:gameresult) }
   it { should respond_to(:season) }
+  it { should respond_to(:team_runs) }
+  it { should respond_to(:opponent_team_runs) }    
   its(:season) { should eq season }
   its(:gameresult) {should eq gameresult }
   its(:gamesite) {should eq gamesite }  

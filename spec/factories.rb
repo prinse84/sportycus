@@ -10,6 +10,8 @@ FactoryGirl.define do
     gameresult
     gamesite
     game_date 2.days.ago
+    team_runs 11
+    opponent_team_runs 5
   end
   
   factory :gameresult do
