@@ -1,0 +1,22 @@
+<%= form_for [@season, @game, @box] do |f| %>
+	<%= render 'error_messages' %>
+
+  	<%= f.label :player_id, 'Player' %>
+	<%= f.collection_select :player_id, Player.all, :id, :name, prompt: true %>
+	
+	<%= f.fields_for :stats do |b| %>
+		<%= b.label :at_bats, 'At Bats'%><%= b.text_field :at_bats %>
+		<%= b.label :plate_appearances, 'Plate Appearances'%> <%= b.text_field :plate_appearances %>
+		<%= b.label :runs_batted_in, 'Runs Batted In'%> <%= b.text_field :runs_batted_in %>		
+		<%= b.label :strikeouts, 'Strikeouts'%> <%= b.text_field :strikeouts %>
+		<%= b.label :singles, 'Singles'%> <%= b.text_field :singles %>				
+		<%= b.label :doubles, 'Doubles'%> <%= b.text_field :doubles %>	
+		<%= b.label :triples, 'Triples'%> <%= b.text_field :triples %>	
+		<%= b.label :home_runs, 'Home Runs'%> <%= b.text_field :home_runs %>							
+		<%= b.label :walks, 'Walks'%> <%= b.text_field :walks %>
+		<%= b.label :sacrifices, 'Sacrifices'%> <%= b.text_field :sacrifices %>
+		<%= b.label :stolen_bases, 'Stolen Bases'%> <%= b.text_field :stolen_bases %>						
+	<% end %>
+	
+  	<%= f.submit "Save Box", class: "btn btn-large btn-primary" %>
+<% end %>

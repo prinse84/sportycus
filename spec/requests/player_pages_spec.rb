@@ -79,17 +79,16 @@ describe "PlayerPages" do
     before { visit players_path }
     it { should have_title('All players') }
     it { should have_content('All players') }
-    
-  end
   
-  describe "pagination" do
-    before(:all) { 31.times { FactoryGirl.create(:player) } }
-    after(:all)  { Player.delete_all }
+    describe "pagination" do
+      before(:all) { 31.times { FactoryGirl.create(:player) } }
+      after(:all)  { Player.delete_all }
     
-    it { should have_selector('div.pagination') }
-    it "should list each player" do
-      Player.paginate(page: 1).each do |player|
-        expect(page).to have_selector('td', text: player.name)
+      it { should have_selector('div.pagination') }
+      it "should list each player" do
+        Player.paginate(page: 1).each do |player|
+          expect(page).to have_selector('td', text: player.name)
+        end
       end
     end
   end

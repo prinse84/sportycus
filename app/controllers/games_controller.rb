@@ -3,6 +3,7 @@ class GamesController < ApplicationController
   def show
     @season = Season.find(params[:season_id])
     @game = Game.find(params[:id])
+    @box = @game.get_player_box
   end
   
   def new
@@ -13,7 +14,6 @@ class GamesController < ApplicationController
   end
   
   def create
-    #@game = Game.new(game_params)
     @season = Season.find(params[:season_id])
     @game = @season.games.build(game_params)
     if @game.save

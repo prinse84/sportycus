@@ -28,12 +28,23 @@ FactoryGirl.define do
     name "Outfield"
     abbreviation "OF"
   end
-  
-  
+
   factory :player do
     name "Nate Jones"
     moniker "Nasty"
     position
   end
+  
+  factory :stat do
+    name "At Bats"
+    abbreviation "AB"
+  end  
+  
+  factory :box do
+    player
+    game
+    stat
+    value 1
+  end  
   
 end

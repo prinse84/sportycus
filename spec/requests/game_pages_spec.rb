@@ -61,7 +61,8 @@ describe "GamePages" do
     it { should have_title('Game details') }
     it { should have_content(game.gameresult.abbreviation) }
     it { should have_content(game.game_date) } 
-    it { should have_content(game.game_time) }       
+    it { should have_content(game.game_time) } 
+    it { should have_content('Add Box') }       
     
   end
   

@@ -9,8 +9,72 @@
 (<%= @game.gameresult.abbreviation %>)
 </h3>
 
+<div class="span8">
 <%= @game.game_date %> <%= @game.game_time %>
 <%#= @game.game_date.strftime('%A, %B %e %Y') + " | " + @game.game_time.strftime('%l:%M %p') %>
+</div>
+<div class="span8">
+	<p>&nbsp;</p>
+	</div>
 
+<div class="span8">
+<ol class="games">
+<table class="table table-condensed table-striped">
+	<thead>
+	    <tr>
+			<th></th>
+			<th>AB</th>
+	      	<th>PA</th>
+	      	<th>RBI</th>	
+	  		<th>X</th>
+	  		<th>1B</th>			
+	  		<th>2B</th>			
+	  		<th>3B</th>			
+	  		<th>HR</th>						
+	  		<th>W</th>	
+	  		<th>S</th>			
+	  		<th>SB</th>				
+	 	</tr>
+	 </thead>
+	<tbody>
+		<% @box.each do |b| %>
+		<tr>
+			<td><%= link_to b["player"].name, player_path(b["player"].id) %></td>
+			<td><%= b["AB"] %></td>	
+			<td><%= b["PA"] %></td>	
+			<td><%= b["RBI"] %></td>	
+			<td><%= b["X"] %></td>	
+			<td><%= b["1B"] %></td>	
+			<td><%= b["2B"] %></td>	
+			<td><%= b["3B"] %></td>	
+			<td><%= b["HR"] %></td>	
+			<td><%= b["W"] %></td>	
+			<td><%= b["S"] %></td>													
+			<td><%= b["SB"] %></td>																
+		</tr>		
+		<% end %>				
+		<%#= render @box %>
+		<tr>
+			<td>Total</td>
+			<td><%= @game.get_total_box('AB') %></td>
+			<td><%= @game.get_total_box('PA') %></td>
+			<td><%= @game.get_total_box('RBI') %></td>		
+			<td><%= @game.get_total_box('X') %></td>
+			<td><%= @game.get_total_box('1B') %></td>
+			<td><%= @game.get_total_box('2B') %></td>
+			<td><%= @game.get_total_box('3B') %></td>
+			<td><%= @game.get_total_box('HR') %></td>									
+			<td><%= @game.get_total_box('W') %></td>
+			<td><%= @game.get_total_box('S') %></td>				
+			<td><%= @game.get_total_box('SB') %></td>
+		</tr>		
+	</tbody>
+</table>
+</ol>
+</div>
+
+<div class="span8">
+<p><%= link_to 'Add Box', new_season_game_box_path(@season, @game), class: "btn btn-small btn-primary" %></p>
 <p><%= link_to 'Edit', edit_season_game_path(@season, @game), class: "btn btn-small btn-warning" %>
 <%= link_to "Delete", season_game_path, method: :delete,data: { confirm: "You sure?" }, class: "btn btn-small btn-danger" %></p>
+</div>
