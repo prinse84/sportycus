@@ -10,18 +10,20 @@ class BoxesController < ApplicationController
     @game = Game.find(params[:game_id])
     @season = Season.find(params[:season_id])
     boxes = []
-    #boxes = params["box"]["stats"].values.collect{ |box| @game.boxes.build(:value => box) }   
+
     params["box"]["stats"].each do |s|
-      stat = Stat.find_by_unique_identifier(s[0]).id
-      boxes << @game.boxes.build(:value => s[1], :player_id => box_params[:player_id], :stat_id => stat)
+      stat = Stat.find_by_unique_identifier(s[0])
+      boxes << @game.boxes.build(:value => s[1], :player_id => box_params[:player_id], :stat_id => stat.id)
     end
-   # boxes.each do |b|
-      #b.player_id = box_params[:player_id]
-      #b.stat_id = Stat.find_by_abbreviation("AB").id
-    #end
     
     if boxes.all?(&:valid?)
       boxes.each(&:save!)
+      calculated_stats = ["hits","batting_average"]
+      calculated_stats.each do |c|
+        stat = Stat.find_by_unique_identifier(c)
+        @box = @game.boxes.build(:value =>@game.get_calculated_field_value_by_player(stat,box_params[:player_id]), :player_id => box_params[:player_id], :stat_id => stat.id)
+        @box.save!
+      end
       redirect_to season_game_url(@season, @game)
     else
       @box = Box.new

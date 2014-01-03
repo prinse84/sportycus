@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131228050609) do
+ActiveRecord::Schema.define(version: 20140102225230) do
 
   create_table "boxes", force: true do |t|
     t.integer  "player_id"
@@ -79,6 +79,8 @@ ActiveRecord::Schema.define(version: 20131228050609) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "unique_identifier"
+    t.string   "formula"
+    t.string   "stat_type"
   end
 
 end

@@ -35,9 +35,31 @@ class Game < ActiveRecord::Base
     return result
   end
   
-  def get_total_box(stat)
-    sid = Stat.where(:abbreviation => stat)
-    return self.boxes.where(:stat_id => sid).sum('value')
+  def get_total_box(abbrev)
+    stat = Stat.find_by_abbreviation(abbrev)
+    if stat.stat_type == 'raw'
+      return self.boxes.where(:stat_id => stat).sum('value')
+    elsif stat.stat_type == 'calculated'
+      return 0
+    end
+  end
+  
+  def get_calculated_field_value_by_player(stat, player)
+    data = JSON.parse(stat.formula)
+    if data["function"] == 'SUM'
+      total = 0
+      data["stats"].each do |s|
+        calc_stat = Stat.find_by_unique_identifier(s)
+        total = total + self.boxes.where(:player_id => player, :stat_id => calc_stat.id).first.value
+      end
+    elsif data["function"] == 'DIV'
+      calc_stat_numerator = Stat.find_by_unique_identifier(data["stats"][0])
+      calc_stat_denumenator = Stat.find_by_unique_identifier(data["stats"][1])
+      total = self.boxes.where(:player_id => player, :stat_id => calc_stat_numerator.id).first.value/self.boxes.where(:player_id => player, :stat_id => calc_stat_denumenator.id).first.value
+    else
+      total = 0
+    end
+    return total
   end
   
 end

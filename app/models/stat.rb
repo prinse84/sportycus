@@ -4,6 +4,7 @@ class Stat < ActiveRecord::Base
   has_many :games, :through => :boxes
   
   validates :name, presence: true
-  validates :abbreviation, presence: true  
+  validates :abbreviation, presence: true 
+  validates :stat_type, presence: true    
   
 end
