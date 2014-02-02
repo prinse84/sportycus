@@ -19,23 +19,30 @@
 
 <div class="span8">
 <ol class="games">
+	<% if @game.does_total_runs_match_result? %>
+	  <div id="error_explanation">
+	    <div class="alert alert-error">
+	      Total number of runs does not match box score.
+	    </div>
+	  </div>
+	<% end %>
+	
 <table class="table table-condensed table-striped">
 	<thead>
 	    <tr>
 			<th></th>
 			<th>AB</th>
-	      	<th>PA</th>
 	      	<th>H</th>	
-	      	<th>AVG</th>	
+			<th>R</th>
 	      	<th>RBI</th>		
-	  		<th>K</th>
+	  		<th>AVG</th>
 	  		<th>1B</th>			
 	  		<th>2B</th>			
 	  		<th>3B</th>			
 	  		<th>HR</th>						
 	  		<th>BB</th>	
 	  		<th>SAC</th>			
-	  		<th>SB</th>				
+	  		<th>K</th>				
 	 	</tr>
 	 </thead>
 	<tbody>
@@ -43,36 +50,34 @@
 		<tr>
 			<td><%= link_to b["player"].name, player_path(b["player"].id) %></td>
 			<td><%= number_with_precision(b["AB"], :precision => 0)  %></td>	
-			<td><%= number_with_precision(b["PA"], :precision => 0)  %></td>
-			<td><%= number_with_precision(b["H"], :precision => 0)  %></td>	
-			<td><%= number_with_precision(b["AVG"], :precision => 3)  %></td>								
-			<td><%= number_with_precision(b["RBI"], :precision => 0)  %></td>	
-			<td><%= number_with_precision(b["K"], :precision => 0)  %></td>	
+			<td><%= number_with_precision(b["H"], :precision => 0)  %></td>
+			<td><%= number_with_precision(b["R"], :precision => 0)  %></td>	
+			<td><%= number_with_precision(b["RBI"], :precision => 0)  %></td>								
+			<td><%= number_with_precision(b["AVG"], :precision => 3)  %></td>	
 			<td><%= number_with_precision(b["1B"], :precision => 0)  %></td>	
 			<td><%= number_with_precision(b["2B"], :precision => 0)  %></td>	
 			<td><%= number_with_precision(b["3B"], :precision => 0)  %></td>	
 			<td><%= number_with_precision(b["HR"], :precision => 0)  %></td>	
 			<td><%= number_with_precision(b["BB"], :precision => 0)  %></td>	
 			<td><%= number_with_precision(b["SAC"], :precision => 0)  %></td>													
-			<td><%= number_with_precision(b["SB"], :precision => 0)  %></td>																
+			<td><%= number_with_precision(b["K"], :precision => 0)  %></td>																
 		</tr>		
 		<% end %>				
 		<%#= render @box %>
 		<tr>
 			<td>Total</td>
 			<td><%= number_with_precision(@game.get_total_box('AB'), :precision => 0) %></td>
-			<td><%= number_with_precision(@game.get_total_box('PA'), :precision => 0)  %></td>
 			<td><%= number_with_precision(@game.get_total_box('H'), :precision => 0)  %></td>
-			<td><%= number_with_precision(@game.get_total_box('AVG'), :precision => 3)  %></td>				
+			<td><%= number_with_precision(@game.get_total_box('R'), :precision => 0)  %></td>						
 			<td><%= number_with_precision(@game.get_total_box('RBI'), :precision => 0)  %></td>		
-			<td><%= number_with_precision(@game.get_total_box('K'), :precision => 0)  %></td>
+			<td><%= number_with_precision(@game.get_total_box('AVG'), :precision => 3)  %></td>				
 			<td><%= number_with_precision(@game.get_total_box('1B'), :precision => 0)  %></td>
 			<td><%= number_with_precision(@game.get_total_box('2B'), :precision => 0)  %></td>
 			<td><%= number_with_precision(@game.get_total_box('3B'), :precision => 0)  %></td>
 			<td><%= number_with_precision(@game.get_total_box('HR'), :precision => 0)  %></td>									
 			<td><%= number_with_precision(@game.get_total_box('BB'), :precision => 0)  %></td>
 			<td><%= number_with_precision(@game.get_total_box('SAC'), :precision => 0)  %></td>				
-			<td><%= number_with_precision(@game.get_total_box('SB'), :precision => 0)  %></td>
+			<td><%= number_with_precision(@game.get_total_box('K'), :precision => 0)  %></td>
 		</tr>		
 	</tbody>
 </table>
